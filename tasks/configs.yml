@@ -1,0 +1,3 @@
+- name: Set up gitconfig
+  become_user: purbanovics
+  copy: src=files/.gitconfig dest=/home/purbanovics/.gitconfig
