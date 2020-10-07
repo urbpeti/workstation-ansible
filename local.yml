@@ -2,8 +2,8 @@
   become: true
   tasks:
   - name: Install packages
-    apt: name={{package}}
-    with_package:
+    apt: name={{item}}
+    loop:
       - git
       - vim
       - tmux
