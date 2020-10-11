@@ -6,4 +6,3 @@
     - tmux
     - vlc
     - net-tools # ifconfig
-    - dhclient # release ip tool
