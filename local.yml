@@ -8,3 +8,4 @@
   tasks:
     - include: tasks/packages.yml
     - include: tasks/configs.yml
+    - include: tasks/vscode.yml
