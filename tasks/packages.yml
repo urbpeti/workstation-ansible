@@ -5,4 +5,5 @@
     - vim
     - tmux
     - vlc
-    - net-tools
+    - net-tools # ifconfig
+    - dhclient # release ip tool
