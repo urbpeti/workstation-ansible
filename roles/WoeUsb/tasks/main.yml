@@ -1,0 +1,28 @@
+- name: Install Woeusb apt repository
+  become: yes
+  apt_repository:
+    repo: 'ppa:tomtomtom/woeusb'
+    state: present
+  when: remove|bool == false
+
+- name: Install Woeusb
+  become: yes
+  apt:
+    name: woeusb
+    state: latest
+  when: remove|bool == false
+
+# Remove 
+- name: Remove Woeusb apt repository
+  become: yes
+  apt_repository:
+    repo: 'ppa:tomtomtom/woeusb'
+    state: absent
+  when: remove|bool == true
+
+- name: Remove Woeusb
+  become: yes
+  apt:
+    name: woeusb
+    state: absent
+  when: remove|bool == true

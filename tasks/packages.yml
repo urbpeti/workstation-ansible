@@ -1,6 +1,8 @@
 - name: Install packages
   apt: name={{item}}
   loop:
+    - curl
+    - unzip
     - git
     - vim
     - tmux
