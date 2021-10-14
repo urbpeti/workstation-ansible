@@ -11,9 +11,9 @@
     - software-properties-common
 
 - name: Get gpg key
-    apt_key:
-      url: https://download.docker.com/linux/ubuntu/gpg
-      state: present
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
  
 - name: Get DEB architecture
   shell: dpkg --print-architecture
@@ -23,25 +23,31 @@
   shell: lsb_release -cs
   register: ubuntu_name
 
+- debug: msg="{{ubuntu_name.stdout}}"
+
 - name: Add docker repository
-      apt_repository:
-        repo: "deb https://download.docker.com/linux/ubuntu {{ ubuntu_name.stdout }} stable"
-        state: present
+  apt_repository:
+    repo: "deb https://download.docker.com/linux/ubuntu {{ ubuntu_name.stdout }} stable"
+    state: present
 
 - name: Install docker
-      apt:
-        name: "{{item}}"
-        state: latest
-        update_cache: yes
-      loop:
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io
-
+  apt:
+    name: "{{item}}"
+    state: latest
+    update_cache: yes
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
 
 - name: Start docker service
-      service:
-        name: docker
-        state: started
-        enabled: yes
+  service:
+    name: docker
+    state: started
+    enabled: yes
 
+#handlers:
+# - name: restart docker
+#   service: 
+#     name: docker 
+#     state: restarted
